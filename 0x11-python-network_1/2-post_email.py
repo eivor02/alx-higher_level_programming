@@ -1,17 +1,21 @@
 #!/usr/bin/python3
-'''
-sends POST request to a url, using email variable
-'''
-
-from urllib.request import urlopen, Request
-from urllib.parse import urlencode
-from sys import argv
+"""A script that:
+- takes in a URL
+- sends a POST request to the passed URL
+- takes email as a parameter
+- displays the body of the response
+"""
+import sys
+import urllib.parse
+import urllib.request
 
 
 if __name__ == "__main__":
-        data = {'email': argv[2]}
-        data = urlencode(data)
-        data = data.encode('utf-8')
-        req = Request(url=argv[1], data=data, method='POST')
-        with urlopen(req) as response:
+    url = sys.argv[1]
+    value = {"email": sys.argv[2]}
+    data = urllib.parse.urlencode(value).encode("ascii")
+
+    request = urllib.request.Request(url, data)
+    with urllib.request.urlopen(request) as response:
+        print(response.read().decode("utf-8"))
                 print(response.read().decode('utf-8'))

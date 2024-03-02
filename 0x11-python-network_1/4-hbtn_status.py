@@ -1,14 +1,11 @@
 #!/usr/bin/python3
-'''
-fetches a webpage
-'''
+"""
+requests model
+"""
 
-from requests import get
-
-
-if __name__ == "__main__":
-        response = get('https://intranet.hbtn.io/status')
-        response = response.content.decode('utf-8')
-        print("Body response:")
-        print('\t- type:', response.__class__)
-        print('\t- content:', response)
+if __name__ == '__main__':
+    import requests
+    html = requests.get('https://alx-intranet.hbtn.io/status')
+    print("Body response:")
+    print("\t- type: {}".format(html.text.__class__))
+    print("\t- content: {}".format(html.text))
